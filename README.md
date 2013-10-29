@@ -9,7 +9,7 @@ Written by Josh Levinger for GlobalSecurity.org in June 2005. Original credit fo
 
 The equations of motion for a missile trajectory lying in a plane are given by:
 
-![Image](../blob/range_equations?raw=true)
+![Image](../blob/range_equations.png?raw=true)
 
 Where
 
