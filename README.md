@@ -5,6 +5,8 @@ Simulates the flight of intercontinental ballistic missiles based on launch para
 
 Written by Josh Levinger for GlobalSecurity.org in June 2005. Original credit for the simulation goes to Dr. David Wright at MIT, who wrote a version in Basic for his paper "Depressed Trajectory SLBMS", Science and Global Security, 1992, Vol 3, p101-159.
 
+GUI updates and packaging improvements by Karsten Wolf @karstenw
+
 ## The Simulation
 
 The equations of motion for a missile trajectory lying in a plane are given by:
