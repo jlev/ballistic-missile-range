@@ -102,7 +102,8 @@ class ParamsPanel(wx.Panel):
         self.MiddleSizer.Add(wx.StaticText(self,-1," "),0) #add blank
         
         #TOP SIZER
-        self.TopSizer = wx.FlexGridSizer(3,1,vgap=10)
+        #self.TopSizer = wx.FlexGridSizer(3,1,vgap=10)
+        self.TopSizer = wx.FlexGridSizer(4,2,vgap=10)
         
         #TRAJECTORY CHOICE SIZER
         self.TrajectoryChoiceSizer = wx.FlexGridSizer(1,2, hgap=5)
@@ -139,7 +140,8 @@ class ParamsPanel(wx.Panel):
         self.TopSizer.Add(self.EtaSizer,0)
         
         #BURNOUT ANGLE SIZER
-        self.BurnoutAngleSizer = wx.FlexGridSizer(1,3,hgap=5)
+        # self.BurnoutAngleSizer = wx.FlexGridSizer(1,3,hgap=5)
+        self.BurnoutAngleSizer = wx.FlexGridSizer(0,0,hgap=5)
         self.BurnoutAngleSizer.Add(wx.StaticText(self,-1,"Burnout Angle"),0)
         self.BurnoutAngleCtrl = NumCtrl(self,-1,"Angle of missile on stage 1 burnout")
         self.BurnoutAngleSizer.Add(self.BurnoutAngleCtrl,0)
@@ -623,7 +625,8 @@ class ResultsPanel(wx.Panel):
 class AdvancedPanel(wx.Panel):
     def __init__(self, parent, id):
         wx.Panel.__init__(self, parent, id)
-        MainSizer = wx.FlexGridSizer(4,1,vgap=25)
+        #MainSizer = wx.FlexGridSizer(4,1,vgap=25)
+        MainSizer = wx.FlexGridSizer(0,1,vgap=25)
         
         TopSizer = wx.FlexGridSizer(1,2,hgap = 10)
         VariableSizer = wx.FlexGridSizer(1,2,hgap = 10)
@@ -642,7 +645,8 @@ class AdvancedPanel(wx.Panel):
         TopSizer.Add(VariableSizer,0)
         TopSizer.Add(StageNumSizer,0)
         
-        ConstraintSizer = wx.FlexGridSizer(3,3,hgap=10,vgap=10)
+        # ConstraintSizer = wx.FlexGridSizer(3,3,hgap=10,vgap=10)
+        ConstraintSizer = wx.FlexGridSizer(0,3,hgap=10,vgap=10)
         ConstraintSizer.Add(wx.StaticText(self,-1,"Stage Mass"),0,wx.ALIGN_LEFT)
         self.StageMassCtrl = NumCtrl(self,-1,"Fuel Mass + Dry Mass (kg). Does not include payload.")
         ConstraintSizer.Add(self.StageMassCtrl)
@@ -921,6 +925,8 @@ class AppFrame(wx.Frame):
         #load presets
         try:
             preset_path = os.path.join(self.get_main_dir(), "presets.txt")
+            if sys.platform == "darwin":
+                preset_path = os.path.join(self.get_main_dir(), "../Resources/", "presets.txt")
             presets_file = open(preset_path,'r')
             presets = eval(presets_file.read())
         except SyntaxError:
