@@ -168,7 +168,7 @@ class Simulation(object):
             h_half = h_old + v_old*sin(gamma_old)*deltat/2
             #
             # calculate gamma
-                        
+            
             vertical_flight_period = 5
             if t < vertical_flight_period:
                 #force gamma to be constant early in flight
@@ -394,18 +394,18 @@ if __name__ == "__main__":
                 
     outfile.write("\nTIME,HEIGHT,VELOCITY,MASS,THRUST,DRAG,GAMMA,RANGE\n")
     flat = zip(results['Time'],
-                    results['Height'],
-                    results['Velocity'],
-                    results['Mass'],
-                    results['Thrust'],
-                    results['Drag'],
-                    results['Gamma'],
-                    results['Range'])
+                results['Height'],
+                results['Velocity'],
+                results['Mass'],
+                results['Thrust'],
+                results['Drag'],
+                results['Gamma'],
+                results['Range'])
     for i in range(1,len(flat)):
-                for n in range(0,len(flat[i])):
-                    outfile.write('%.3f' % flat[i][n])
-                    outfile.write(',')
-                outfile.write('\n')
+        for n in range(0,len(flat[i])):
+            outfile.write('%.3f' % flat[i][n])
+            outfile.write(',')
+        outfile.write('\n')
     print "Data written to '%s'" % path
     outfile.close()
 else:

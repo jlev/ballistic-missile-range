@@ -271,7 +271,7 @@ class PolyMarker(PolyPoints):
 
     def getSymExtent(self, printerScale):
         """Width and Height of Marker"""
-        s= 5*self.attributes['size'] * printerScale
+        s = 5 * self.attributes['size'] * printerScale
         return (s,s)
 
     def _drawmarkers(self, dc, coords, marker,size=1):
@@ -279,46 +279,46 @@ class PolyMarker(PolyPoints):
         f(dc, coords, size)
 
     def _circle(self, dc, coords, size=1):
-        fact= 2.5*size
-        wh= 5.0*size
-        rect= numpy.zeros((len(coords),4),numpy.Float)+[0.0,0.0,wh,wh]
-        rect[:,0:2]= coords-[fact,fact]
+        fact = 2.5 * size
+        wh = 5.0 * size
+        rect = numpy.zeros((len(coords),4),numpy.Float)+[0.0,0.0,wh,wh]
+        rect[:,0:2] = coords-[fact,fact]
         dc.DrawEllipseList(rect.astype(numpy.int32))
 
     def _dot(self, dc, coords, size=1):
         dc.DrawPointList(coords)
 
     def _square(self, dc, coords, size=1):
-        fact= 2.5*size
-        wh= 5.0*size
-        rect= numpy.zeros((len(coords),4),numpy.Float)+[0.0,0.0,wh,wh]
-        rect[:,0:2]= coords-[fact,fact]
+        fact = 2.5*size
+        wh = 5.0*size
+        rect = numpy.zeros((len(coords),4),numpy.Float)+[0.0,0.0,wh,wh]
+        rect[:,0:2] = coords-[fact,fact]
         dc.DrawRectangleList(rect.astype(numpy.int32))
 
     def _triangle(self, dc, coords, size=1):
-        shape= [(-2.5*size,1.44*size), (2.5*size,1.44*size), (0.0,-2.88*size)]
-        poly= numpy.repeat(coords,3)
-        poly.shape= (len(coords),3,2)
+        shape = [(-2.5*size,1.44*size), (2.5*size,1.44*size), (0.0,-2.88*size)]
+        poly = numpy.repeat(coords,3)
+        poly.shape = (len(coords),3,2)
         poly += shape
         dc.DrawPolygonList(poly.astype(numpy.int32))
 
     def _triangle_down(self, dc, coords, size=1):
-        shape= [(-2.5*size,-1.44*size), (2.5*size,-1.44*size), (0.0,2.88*size)]
-        poly= numpy.repeat(coords,3)
-        poly.shape= (len(coords),3,2)
+        shape = [(-2.5*size,-1.44*size), (2.5*size,-1.44*size), (0.0,2.88*size)]
+        poly = numpy.repeat(coords,3)
+        poly.shape = (len(coords),3,2)
         poly += shape
         dc.DrawPolygonList(poly.astype(numpy.int32))
       
     def _cross(self, dc, coords, size=1):
-        fact= 2.5*size
+        fact = 2.5*size
         for f in [[-fact,-fact,fact,fact],[-fact,fact,fact,-fact]]:
-            lines= numpy.concatenate((coords,coords),axis=1)+f
+            lines = numpy.concatenate((coords,coords),axis=1)+f
             dc.DrawLineList(lines.astype(numpy.int32))
 
     def _plus(self, dc, coords, size=1):
-        fact= 2.5*size
+        fact = 2.5*size
         for f in [[-fact,0,fact,0],[0,-fact,0,fact]]:
-            lines= numpy.concatenate((coords,coords),axis=1)+f
+            lines = numpy.concatenate((coords,coords),axis=1)+f
             dc.DrawLineList(lines.astype(numpy.int32))
 
 class PlotGraphics:
@@ -416,8 +416,13 @@ class PlotCanvas(wx.Window):
     """Subclass of a wx.Window to allow simple general plotting
     of data with zoom, labels, and automatic axis scaling."""
 
-    def __init__(self, parent, id = -1, pos=wx.DefaultPosition,
-            size=wx.DefaultSize, style= wx.DEFAULT_FRAME_STYLE, name= ""):
+    def __init__(self,
+                 parent,
+                 id=-1,
+                 pos=wx.DefaultPosition,
+                 size=wx.DefaultSize,
+                 style=wx.DEFAULT_FRAME_STYLE,
+                 name=""):
         """Constucts a window, which can be a child of a frame, dialog or
         any other non-control window"""
     
@@ -686,7 +691,7 @@ class PlotCanvas(wx.Window):
     def ScrollUp(self, units):
         """Move view up number of axis units."""
         self.last_PointLabel = None        #reset pointLabel
-        if self.last_draw is not None:  
+        if self.last_draw is not None:
              graphics, xAxis, yAxis= self.last_draw
              yAxis= (yAxis[0]+units, yAxis[1]+units)
              self.Draw(graphics,xAxis,yAxis)

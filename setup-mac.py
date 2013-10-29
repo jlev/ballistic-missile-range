@@ -34,11 +34,11 @@ if sys.platform == 'darwin':
     
     extra_options = dict(
         setup_requires=['py2app'],
-         app=[mainscript],
-         options=dict(py2app=dict(argv_emulation=True,
-            iconfile='icon/tintin.icns',
-            plist=plist)),
-         data_files=data_files
+        app=[mainscript],
+        options=dict(py2app=dict(argv_emulation=True,
+                                 iconfile='icon/tintin.icns',
+                                 plist=plist)),
+        data_files=data_files
     )
     
     

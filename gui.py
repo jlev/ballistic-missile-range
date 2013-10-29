@@ -222,8 +222,8 @@ class ParamsPanel(wx.Panel):
         RunButton = wx.Button(self,-1,"Run Simulation")
         self.Bind(wx.EVT_BUTTON,self.OnRun, RunButton)
         RunButton.SetDefault()
-        RunButton.SetSize(RunButton.GetBestSize())          
-                    
+        RunButton.SetSize(RunButton.GetBestSize())
+        
         self.MainSizer.Add(self.MiddleSizer,0,wx.ALIGN_LEFT|wx.LEFT|wx.RIGHT|wx.TOP,10)
         self.MainSizer.Add(self.TopSizer,0,wx.ALIGN_LEFT|wx.LEFT|wx.RIGHT,10)
         self.MainSizer.Add(self.StageSizer,0,wx.ALIGN_LEFT|wx.LEFT|wx.RIGHT,10)
@@ -295,8 +295,8 @@ class ParamsPanel(wx.Panel):
             self.DiameterControl.SetValue(str(preset_data['missilediam']))
             self.EstRangeControl.SetValue(str(preset_data['estrange']))
             self.StageChoiceBox.SetSelection(numstages-1)
-                    #because choices[0]=1
-                    #SetSelection takes integer, not string
+            #because choices[0]=1
+            #SetSelection takes integer, not string
             
             for i in range(1,numstages+1):
                 self.StageFuelMassCtrl[i].SetValue(str(preset_data['fuelmass'][i]))
@@ -531,7 +531,7 @@ class ResultsPanel(wx.Panel):
         #set plot title here before adding units to description string
         title = "%s vs %s" % (y,x)
 
-        #determine stage burnouts       
+        #determine stage burnouts        
         app = wx.GetTopLevelParent(self)
         sim = app.Params.sim
         for i in range(1,sim.numstages+1):
@@ -541,7 +541,7 @@ class ResultsPanel(wx.Panel):
                 x_stage = float(self.StageRangeResult[i].GetValue())
             #can't figure out y value
             #list lookup fails because array is floats w/ arbitrary precision
-            #plot stage burnout 
+            #plot stage burnout    
             plot.append(PolyMarker([(x_stage,0)],
             
                 legend="Stage %d Burnout" % i,marker='cross',colour='red',size=1))
@@ -615,7 +615,7 @@ class ResultsPanel(wx.Panel):
                     self.outfile.write('%.3f' % flat[i][n])
                     self.outfile.write(',')
                 self.outfile.write('\n')
-                                        
+
             print "Data written to '%s'" % path
             self.outfile.close()
         #clean up
@@ -636,7 +636,7 @@ class AdvancedPanel(wx.Panel):
         VariableSizer.Add(self.VariableChoice,0,wx.ALIGN_LEFT)
         self.Bind(wx.EVT_CHOICE,self.OnChooseVar,self.VariableChoice)
         
-        StageNumSizer = wx.FlexGridSizer(1,2,hgap = 10) 
+        StageNumSizer = wx.FlexGridSizer(1,2,hgap = 10)
         StageNumSizer.Add(wx.StaticText(self,-1,"Stage"),0)
         self.StageChoiceBox = wx.Choice(self,-1,choices = ['1','2','3','4','5'])
         StageNumSizer.Add(self.StageChoiceBox,0,wx.ALIGN_LEFT)
@@ -825,7 +825,7 @@ class AdvancedPanel(wx.Panel):
     
         sim = Simulation(self)
         app = wx.GetTopLevelParent(self)
-        try:    
+        try:
             sim.payload = float(app.Params.PayloadWeightControl.GetValue())
             sim.rvdiam = float(app.Params.RVControl.GetValue())
             sim.missilediam = float(app.Params.DiameterControl.GetValue())
@@ -862,10 +862,10 @@ class AdvancedPanel(wx.Panel):
         
         
 class AppFrame(wx.Frame):
+
     def __init__(self, parent, id, title):
 
-        wx.Frame.__init__(self, parent, id, title,
-                (-1,-1),wx.Size(400,550))
+        wx.Frame.__init__(self, parent, id, title, (-1,-1), wx.Size(400,550))
 
         # Now Create the menu bar and items
         self.MenuBar = wx.MenuBar()
