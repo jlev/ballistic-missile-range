@@ -372,7 +372,8 @@ if __name__ == "__main__":
         sim.dMdt.append(float(sim.thrust0[i]/(sim.Isp0[i]*9.81)))
         sim.burntime.append(float(raw_input("Burntime (sec): ")))
     sim.payload = float(raw_input("Payload (kg): "))
-    sim.maxdiam = float(raw_input("Diameter (m): "))
+    sim.missilediam = float(raw_input("Missile Diameter (m): "))
+    sim.rvdiam = float(raw_input("Re-entry Diameter (m): "))
     sim.est_range = float(raw_input("Est range (km): "))*1000
     
     print '\n'
