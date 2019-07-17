@@ -789,7 +789,7 @@ class PlotCanvas(wx.Window):
             dc = wx.BufferedDC(wx.ClientDC(self), self._Buffer)
             dc.Clear()
             
-        dc.BeginDrawing()
+        # dc.BeginDrawing()
         # dc.Clear()
         
         # set font size for every thing but title and legend
@@ -881,7 +881,7 @@ class PlotCanvas(wx.Window):
         # print "entire graphics drawing took: %f second"%(_time.clock() - start)
         # remove the clipping region
         dc.DestroyClippingRegion()
-        dc.EndDrawing()
+        # dc.EndDrawing()
         
     def Redraw(self, dc= None):
         """Redraw the existing plot."""
@@ -1035,7 +1035,7 @@ class PlotCanvas(wx.Window):
         # Make new offscreen bitmap: this bitmap will always have the
         # current drawing in it, so it can be used to save the image to
         # a file, or whatever.
-        self._Buffer = wx.EmptyBitmap(Size[0],Size[1])
+        self._Buffer = wx.Bitmap(Size[0],Size[1])
         self._setSize()
 
         self.last_PointLabel = None        #reset pointLabel
@@ -1080,13 +1080,13 @@ class PlotCanvas(wx.Window):
         """Draws and erases pointLabels"""
         width = self._Buffer.GetWidth()
         height = self._Buffer.GetHeight()
-        tmp_Buffer = wx.EmptyBitmap(width,height)
+        tmp_Buffer = wx.Bitmap(width,height)
         dcs = wx.MemoryDC()
         dcs.SelectObject(tmp_Buffer)
         dcs.Clear()
-        dcs.BeginDrawing()
+        # dcs.BeginDrawing()
         self._pointLabelFunc(dcs,mDataDict)  #custom user pointLabel function
-        dcs.EndDrawing()
+        # dcs.EndDrawing()
 
         dc = wx.ClientDC( self )
         #this will erase if called twice
@@ -1158,13 +1158,13 @@ class PlotCanvas(wx.Window):
         ptx,pty,rectWidth,rectHeight= self._point2ClientCoord(corner1, corner2)
         # draw rectangle
         dc = wx.ClientDC( self )
-        dc.BeginDrawing()                 
+        # dc.BeginDrawing()                 
         dc.SetPen(wx.Pen(wx.BLACK))
         dc.SetBrush(wx.Brush( wx.WHITE, wx.TRANSPARENT ) )
         dc.SetLogicalFunction(wx.INVERT)
         dc.DrawRectangle( ptx,pty, rectWidth,rectHeight)
         dc.SetLogicalFunction(wx.COPY)
-        dc.EndDrawing()
+        # dc.EndDrawing()
 
     def _getFont(self,size):
         """Take font size, adjusts if printing and returns wx.Font"""

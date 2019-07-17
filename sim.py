@@ -33,7 +33,10 @@ class Simulation(object):
         
         #print "Start Simulation"
         # ref for printing results in GUI mode
-        app = wx.GetTopLevelParent(self.parent)
+        try:
+            app = wx.GetTopLevelParent(self.parent)
+        except NameError:
+            pass
         self.trajectory = trajectory #make ref for eta function
         ##### SET INTEGRATION PARAMETERS
         tEND = 20000        #timeout value

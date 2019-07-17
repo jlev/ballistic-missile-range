@@ -56,12 +56,12 @@ class ParamsPanel(wx.Panel):
         self.presets = presets #ext ref for loading presets
         
         #MAIN SIZER
-        self.MainSizer = wx.FlexGridSizer(4,1,vgap = 25,hgap = 10)
+        self.MainSizer = wx.FlexGridSizer(4,1,vgap=25,hgap=10)
         self.MainSizer.SetMinSize((600, 400))
         
         #MIDDLE SIZER
         #for main rocket params
-        self.MiddleSizer = wx.FlexGridSizer(6,3,vgap = 5)
+        self.MiddleSizer = wx.FlexGridSizer(6,3,vgap=5,hgap=0)
         #Presets
         preset_list = [''] #start with no preset chosen
         preset_list.extend(presets.keys()) #add presets from file
@@ -103,10 +103,10 @@ class ParamsPanel(wx.Panel):
         
         #TOP SIZER
         #self.TopSizer = wx.FlexGridSizer(3,1,vgap=10)
-        self.TopSizer = wx.FlexGridSizer(4,2,vgap=10)
+        self.TopSizer = wx.FlexGridSizer(4,2,vgap=10, hgap=5)
         
         #TRAJECTORY CHOICE SIZER
-        self.TrajectoryChoiceSizer = wx.FlexGridSizer(1,2, hgap=5)
+        self.TrajectoryChoiceSizer = wx.FlexGridSizer(1,2, vgap=0, hgap=5)
         self.TrajectoryChoiceSizer.Add(wx.StaticText(self,-1,"Trajectory"),0)
         #self.TrajectoryChoiceBox = wx.Choice(self,-1,choices = ['Minimum Energy','Thrust Vector','Burnout Angle','Turn Angle'])
         #only one trajectory choice is working properly
@@ -117,7 +117,7 @@ class ParamsPanel(wx.Panel):
         self.TopSizer.Add(self.TrajectoryChoiceSizer,0)
         
         #EST RANGE SIZER
-        self.EstRangeSizer = wx.FlexGridSizer(1,3,hgap=5)
+        self.EstRangeSizer = wx.FlexGridSizer(1,3, vgap=0, hgap=5)
         self.EstRangeSizer.Add(wx.StaticText(self,-1,"Estimated Range"),0)
         self.EstRangeControl = NumCtrl(self,-1,"Estimated range (km). Forces missile to MET after stage 1 burnout.")
         self.EstRangeSizer.Add(self.EstRangeControl,0)
@@ -141,7 +141,7 @@ class ParamsPanel(wx.Panel):
         
         #BURNOUT ANGLE SIZER
         # self.BurnoutAngleSizer = wx.FlexGridSizer(1,3,hgap=5)
-        self.BurnoutAngleSizer = wx.FlexGridSizer(0,0,hgap=5)
+        self.BurnoutAngleSizer = wx.FlexGridSizer(0,0,vgap=0, hgap=5)
         self.BurnoutAngleSizer.Add(wx.StaticText(self,-1,"Burnout Angle"),0)
         self.BurnoutAngleCtrl = NumCtrl(self,-1,"Angle of missile on stage 1 burnout")
         self.BurnoutAngleSizer.Add(self.BurnoutAngleCtrl,0)
@@ -405,10 +405,10 @@ class ResultsPanel(wx.Panel):
         #create new plot window
         
         #MAIN SIZER
-        MainResultsSizer = wx.FlexGridSizer(5,0,vgap = 12)
+        MainResultsSizer = wx.FlexGridSizer(5,0,vgap=12,hgap=0)
         
         #RESULT SIZER
-        FinalResultSizer = wx.FlexGridSizer(5,3,vgap = 10,hgap = 10)
+        FinalResultSizer = wx.FlexGridSizer(5,3,vgap=10,hgap=10)
         #Apogee
         FinalResultSizer.Add(wx.StaticText(self,-1,"Apogee"),0,wx.ALIGN_LEFT)
         self.ApogeeResult = NumCtrl(self,-1,"Largest height attained in flight (km)",style=wx.TE_READONLY)
@@ -473,12 +473,12 @@ class ResultsPanel(wx.Panel):
         
         #show/hide of unused stages is done in OnRun method of Params panel
         
-        BottomSizer = wx.FlexGridSizer(1,2,hgap=50)
+        BottomSizer = wx.FlexGridSizer(1,2,vgap=0,hgap=50)
         
         #Plot Controls
-        PlotControlSizer = wx.FlexGridSizer(2,3,vgap = 10,hgap = 10)
-        LeftControlSizer = wx.FlexGridSizer(5,1,vgap = 5)
-        RightControlSizer = wx.FlexGridSizer(2,1,vgap = 5)
+        PlotControlSizer = wx.FlexGridSizer(2,3,vgap=10,hgap=10)
+        LeftControlSizer = wx.FlexGridSizer(5,1,vgap=5,hgap=0)
+        RightControlSizer = wx.FlexGridSizer(2,1,vgap=5,hgap=0)
         #
         self.XRadioBox = wx.RadioBox(self,-1,choices=["Time","Range"]
             ,majorDimension=1,style=wx.RA_SPECIFY_COLS)
@@ -501,7 +501,7 @@ class ResultsPanel(wx.Panel):
         self.Bind(wx.EVT_BUTTON,self.OnWriteToFile, WriteButton)
         WriteButton.SetSize(WriteButton.GetBestSize())
         
-        PlotButtonSizer = wx.FlexGridSizer(2,1,vgap=20)
+        PlotButtonSizer = wx.FlexGridSizer(2,1,vgap=20,hgap=0)
         PlotButtonSizer.Add(PlotButton)
         PlotButtonSizer.Add(WriteButton)        
         
@@ -626,17 +626,17 @@ class AdvancedPanel(wx.Panel):
     def __init__(self, parent, id):
         wx.Panel.__init__(self, parent, id)
         #MainSizer = wx.FlexGridSizer(4,1,vgap=25)
-        MainSizer = wx.FlexGridSizer(0,1,vgap=25)
+        MainSizer = wx.FlexGridSizer(0,1,vgap=25,hgap=0)
         
-        TopSizer = wx.FlexGridSizer(1,2,hgap = 10)
-        VariableSizer = wx.FlexGridSizer(1,2,hgap = 10)
+        TopSizer = wx.FlexGridSizer(1,2,vgap=0,hgap=10)
+        VariableSizer = wx.FlexGridSizer(1,2,vgap=0,hgap=10)
         VariableSizer.Add(wx.StaticText(self,-1,"Solve for"),0,wx.ALIGN_LEFT)
         self.VariableChoice = wx.Choice(self,-1,choices = ["Fuel Fraction"])
         #self.VariableChoice.SetSelection(0) #only one kind of problem to solve
         VariableSizer.Add(self.VariableChoice,0,wx.ALIGN_LEFT)
         self.Bind(wx.EVT_CHOICE,self.OnChooseVar,self.VariableChoice)
         
-        StageNumSizer = wx.FlexGridSizer(1,2,hgap = 10)
+        StageNumSizer = wx.FlexGridSizer(1,2,vgap=0,hgap=10)
         StageNumSizer.Add(wx.StaticText(self,-1,"Stage"),0)
         self.StageChoiceBox = wx.Choice(self,-1,choices = ['1','2','3','4','5'])
         StageNumSizer.Add(self.StageChoiceBox,0,wx.ALIGN_LEFT)
@@ -884,7 +884,10 @@ class AppFrame(wx.Frame):
         wx.EVT_MENU(self, 203, self.OnSaveFile)
         FileMenu.Append(205, 'Q&uit', 'Quit this Application')
         wx.EVT_MENU(self,205, self.OnFileExit)
-        wx.App_SetMacExitMenuItemId(205) #mac-ify
+        if 'phoenix' in wx.PlatformInfo:
+            wx.PyApp.SetMacExitMenuItemId(wx.ID_EXIT)
+        else:
+            wx.App_SetMacExitMenuItemId(205) #mac-ify
         self.MenuBar.Append(FileMenu, '&File')
         
         #Plot Menu, shamelessly stolen from wx.lib.plot.TestFrame
@@ -912,10 +915,14 @@ class AppFrame(wx.Frame):
         HelpMenu.Append(300, '&About', 'About...')
         wx.EVT_MENU(self, 300, self.OnAbout)
         
-        if "__WXMAC__" in wx.PlatformInfo:
-            #macify
-            wx.App.SetMacAboutMenuItemId(300)
-            wx.App_SetMacHelpMenuTitleName("&Help")
+        if wx.Platform == "__WXMAC__":
+            if "phoenix" in wx.PlatformInfo:
+                #macify
+                wx.PyApp.SetMacAboutMenuItemId(wx.ID_ABOUT)
+                wx.PyApp.SetMacHelpMenuTitleName('&Help')
+            else:
+                wx.App.SetMacAboutMenuItemId(300)
+                wx.App_SetMacHelpMenuTitleName("&Help")
         else:
             self.MenuBar.Append(HelpMenu, "&Help")
         self.SetMenuBar(self.MenuBar)
@@ -925,8 +932,6 @@ class AppFrame(wx.Frame):
         #load presets
         try:
             preset_path = os.path.join(self.get_main_dir(), "presets.txt")
-            if sys.platform == "darwin":
-                preset_path = os.path.join(self.get_main_dir(), "../Resources/", "presets.txt")
             presets_file = open(preset_path,'r')
             presets = eval(presets_file.read())
         except SyntaxError:
