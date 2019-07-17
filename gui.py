@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
 #required modules
-import wx
+import wx, wx.adv
 from plot import * #made wx.lib.plot local
 try:
     import numarray as numpy
@@ -966,7 +966,7 @@ class AppFrame(wx.Frame):
         sys.exit()
         
     def OnAbout(self, event):
-        info = wx.AboutDialogInfo()
+        info = wx.adv.AboutDialogInfo()
         info.SetName('Ballistic Missile Simulator')
         info.SetVersion('1.0')
         info.SetDescription("It's not rocket science")
@@ -974,7 +974,7 @@ class AppFrame(wx.Frame):
         info.SetLicence(__doc__)
         info.SetCopyright("Copyright 2006 Josh Levinger")
         info.SetWebSite('http://www.levinger.net/josh')
-        wx.AboutBox(info)
+        wx.adv.AboutBox(info)
 
         
     #Plot Event Handlers, shamelessly stolen from wx.lib.plot.TestFrame
